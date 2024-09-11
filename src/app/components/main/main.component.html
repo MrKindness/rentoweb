@@ -1,0 +1,25 @@
+<div class="container">
+    <mat-toolbar>
+        <mat-toolbar-row class="toolbar-row">
+            <span class="title">Rento</span>
+            <div class="buttons">
+                <button mat-flat-button>Home</button>
+                @if(this.user && this.user.role == 'admin') {
+                    <button mat-flat-button>Users</button>
+                    <button mat-flat-button>Cars</button>
+                }
+                @if(this.user) {
+                    <button mat-flat-button>Settings</button>
+                    <button mat-flat-button (click)="logoutClick()">Log out</button>
+                } @else {
+                    <button mat-flat-button (click)="loginClick()">Log in</button>
+                }
+            </div>
+        </mat-toolbar-row>
+      </mat-toolbar>
+      <div>
+        {{this.user?.username }}
+        {{this.user?.role}}
+    </div>
+</div>
+
