@@ -1,40 +1,39 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { Constants } from "../utils/constants";
-import { AuthRequest } from "../model/auth/auth-request";
-import { AuthResponse } from "../model/auth/auth-response";
+import { SimpleResponse } from "../model/simple-response";
 import { catchError, map, Observable } from "rxjs";
 import { jwtDecode } from "jwt-decode";
-import { Router } from "@angular/router";
-import { UserCreateRequest } from "../model/user/user-create-request";
+import { AuthRequest } from "../model/auth";
+import { UserCreateRequest } from "../model/user";
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
-    private http = inject(HttpClient);
-    private router = inject(Router);
 
-    public signIn(username: string, password: string):Observable<AuthResponse> {
-        return this.http.post<AuthResponse>(Constants.authRequest, new AuthRequest(username, password))
+    private http = inject(HttpClient);
+
+    public signIn(username: string, password: string):Observable<SimpleResponse> {
+        return this.http.post<SimpleResponse>(Constants.authRequest, new AuthRequest(username, password))
         .pipe(
-            map((param) => {      
-                this.setSession(param.value);
-                return new AuthResponse(param.value, true)
+            map((response) => {
+                this.setSession(response.value);
+                return new SimpleResponse(true, response.value)
             }),
             catchError(async (err) => {
-                return new AuthResponse(err.error.error, false)
+                return new SimpleResponse(false, err?.error?.value)
             })
         );
     }
 
-    public register(user: UserCreateRequest):Observable<AuthResponse> {
-        return this.http.post<AuthResponse>(Constants.registerRequest, user)
+    public register(user: UserCreateRequest):Observable<SimpleResponse> {
+        return this.http.post<SimpleResponse>(Constants.registerRequest, user)
         .pipe(
-            map((param) => {     
-                this.setSession(param.value);
-                return new AuthResponse(param.value, true)
+            map((response) => {
+                this.setSession(response.value);
+                return new SimpleResponse(true, response.value)
             }),
             catchError(async (err) => {
-                return new AuthResponse(err.error.error, false)
+                return new SimpleResponse(false, err?.error?.value)
             })
         );
     }

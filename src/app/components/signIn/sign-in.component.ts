@@ -5,26 +5,27 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthService } from '../../services/auth.service';
-import { AuthResponse } from '../../model/auth/auth-response';
+import { SimpleResponse } from '../../model/simple-response';
 import { Router } from '@angular/router';
 import { Constants } from '../../utils/constants';
+import { DialogService } from '../../services/dialog.service';
 
 @Component({
-    selector: 'auth-component',
-    templateUrl: './auth.component.html',
-    styleUrls: ['./auth.component.scss'],
+    selector: 'sign-in-component',
+    templateUrl: './sign-in.component.html',
+    styleUrls: ['./sign-in.component.scss'],
     imports:[FormsModule, MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule],
     standalone: true
 })
-export class AuthComponent {
+export class SignInComponent {
     passwordVisibility: boolean = false;
-    showErrorMessage: boolean = false;
     disableButton: boolean = false;
     username: string = '';
     password: string = '';
 
     private authService = inject(AuthService);
     private router = inject(Router);
+    private dialogService = inject(DialogService);
 
     hideClick(event: MouseEvent) {
         this.passwordVisibility = !this.passwordVisibility;
@@ -34,13 +35,8 @@ export class AuthComponent {
     async signInClick() {
         this.disableButton = true;
         this.authService.signIn(this.username, this.password).subscribe(
-            (result:AuthResponse) => {
-                console.log(result);
-                if(result.result) {
-                    this.router.navigateByUrl('');
-                } else {
-                    this.showErrorMessage = true;
-                }
+            (result:SimpleResponse) => {
+                result.success ? this.router.navigateByUrl('') : this.dialogService.openDialog('Error', result.value);
                 this.disableButton = false;
             }
         );

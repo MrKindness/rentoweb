@@ -1,3 +1,9 @@
+.toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+}
+
 .toolbar-row {
     justify-content: space-between;
 }
@@ -9,4 +15,9 @@
 
 .title{
     font-size: 28px;
+}
+
+.username {
+    align-self: center;
+    font-size: 22px;
 }

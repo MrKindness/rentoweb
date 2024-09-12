@@ -8,9 +8,10 @@ export class Constants {
     private static readonly userRoot = this.apiPath + '/user';
     static readonly currentUserRequest = this.userRoot;
 
+    private static readonly transportRoot = this.apiPath + '/transport';
+    static readonly createTransportRequest = this.transportRoot;
+    static readonly transportsByOwnerRequest = this.transportRoot + '/owner';
+
     static readonly authPage = 'auth';
     static readonly registerPage = 'register';
-
-    static readonly errorDialogTitle = 'Error';
-    static readonly successDialogTitle = 'Success';
 }

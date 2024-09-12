@@ -1,13 +1,6 @@
 <div class="formContainer">
     <div class="formSignin">
         <h2 class="formSigninHeading">Sign In</h2>
-
-        @if(this.showErrorMessage) {
-            <div class="message">
-                Invalid password or username!
-            </div>
-        }
-
         <mat-form-field>
             <mat-label>Username</mat-label>
             <input matInput [(ngModel)]="username" />
