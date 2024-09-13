@@ -14,8 +14,8 @@ import { DialogService } from '../../services/dialog.service';
     selector: 'sign-in-component',
     templateUrl: './sign-in.component.html',
     styleUrls: ['./sign-in.component.scss'],
-    imports:[FormsModule, MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule],
-    standalone: true
+    imports: [FormsModule, MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule],
+    standalone: true,
 })
 export class SignInComponent {
     passwordVisibility: boolean = false;
@@ -34,12 +34,10 @@ export class SignInComponent {
 
     async signInClick() {
         this.disableButton = true;
-        this.authService.signIn(this.username, this.password).subscribe(
-            (result:SimpleResponse) => {
-                result.success ? this.router.navigateByUrl('') : this.dialogService.openDialog('Error', result.value);
-                this.disableButton = false;
-            }
-        );
+        this.authService.signIn(this.username, this.password).subscribe((result: SimpleResponse) => {
+            result.success ? this.router.navigateByUrl('') : this.dialogService.openDialog('Error', result.value);
+            this.disableButton = false;
+        });
     }
 
     async registerClick() {

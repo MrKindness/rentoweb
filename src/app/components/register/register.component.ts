@@ -15,13 +15,13 @@ import { UserCreateRequest } from '../../model/user';
     selector: 'register-component',
     templateUrl: './register.component.html',
     styleUrls: ['./register.component.scss'],
-    imports:[FormsModule, MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule],
-    standalone: true
+    imports: [FormsModule, MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule],
+    standalone: true,
 })
 export class RegisterComponent {
     passwordVisibility: boolean = false;
     disableButton: boolean = false;
-    user: UserCreateRequest= new UserCreateRequest();
+    user: UserCreateRequest = new UserCreateRequest();
 
     private authService = inject(AuthService);
     private router = inject(Router);
@@ -39,16 +39,14 @@ export class RegisterComponent {
     async registerClick() {
         this.disableButton = true;
 
-        if(!this.user.username || !this.user.name || !this.user.email || !this.user.password) {
+        if (!this.user.username || !this.user.name || !this.user.email || !this.user.password) {
             this.dialogService.openDialog('Error', 'The username, name, email and password fields are required!');
             this.disableButton = false;
         } else {
-            this.authService.register(this.user).subscribe(
-                (result:SimpleResponse) => {
-                    result.success ? this.router.navigateByUrl('') : this.dialogService.openDialog('Error', result.value);
-                    this.disableButton = false;
-                }
-            )
+            this.authService.register(this.user).subscribe((result: SimpleResponse) => {
+                result.success ? this.router.navigateByUrl('') : this.dialogService.openDialog('Error', result.value);
+                this.disableButton = false;
+            });
         }
     }
 }

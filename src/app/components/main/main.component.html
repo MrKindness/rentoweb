@@ -4,36 +4,44 @@
             <span class="title">Rento</span>
             <div class="buttons">
                 <span class="username">{{ this.user?.username }}</span>
-                <button mat-flat-button (click)="this.state = MainComponentState.mainTransports">Home</button>
+                <button
+                    mat-flat-button
+                    (click)="this.state = MainComponentState.mainTransports"
+                >
+                    Home
+                </button>
                 @if(this.user && this.user.role == 'admin') {
-                    <button mat-flat-button>Users</button>
-                    <button mat-flat-button>Transports</button>
-                } 
-                @else if (this.user && this.user.role == 'user') {
-                    <button mat-flat-button (click)="this.state = MainComponentState.myTransports">My transports</button>
-                    <button mat-flat-button (click)="this.state = MainComponentState.rentedTransports">Rented transports</button>
-                }
-                @if(this.user) {
-                    <button mat-flat-button>Settings</button>
-                    <button mat-flat-button (click)="logOutClick()">Log out</button>
+                <button mat-flat-button>Users</button>
+                <button mat-flat-button>Transports</button>
+                } @else if (this.user && this.user.role == 'user') {
+                <button
+                    mat-flat-button
+                    (click)="this.state = MainComponentState.myTransports"
+                >
+                    My transports
+                </button>
+                <button
+                    mat-flat-button
+                    (click)="this.state = MainComponentState.rentedTransports"
+                >
+                    Rented transports
+                </button>
+                } @if(this.user) {
+                <button mat-flat-button>Settings</button>
+                <button mat-flat-button (click)="logOutClick()">Log out</button>
                 } @else {
-                    <button mat-flat-button (click)="logInClick()">Log in</button>
+                <button mat-flat-button (click)="logInClick()">Log in</button>
                 }
             </div>
         </mat-toolbar-row>
     </mat-toolbar>
     <div class="content-container">
-        @switch(state)
-        {
-            @case(MainComponentState.mainTransports) {
-                <main-transports-component></main-transports-component>
-            }
-            @case(MainComponentState.myTransports) {
-                <my-transports-component [user]="this.user"></my-transports-component>
-            }
-            @case(MainComponentState.rentedTransports) {
-                <rented-transports-component></rented-transports-component>
-            }
-        }
+        @switch(state) { @case(MainComponentState.mainTransports) {
+        <main-transports-component></main-transports-component>
+        } @case(MainComponentState.myTransports) {
+        <my-transports-component [user]="this.user"></my-transports-component>
+        } @case(MainComponentState.rentedTransports) {
+        <rented-transports-component></rented-transports-component>
+        } }
     </div>
 </div>

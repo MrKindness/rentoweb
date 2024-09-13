@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
@@ -24,13 +24,12 @@ export enum MainComponentState {
     selector: 'main-component',
     templateUrl: './main.component.html',
     styleUrls: ['./main.component.scss'],
-    imports:[MatToolbarModule, MatIconModule, MatButtonModule, 
-            MainTransportsComponent, MyTransportsComponent, RentedTransportsComponent],
-    standalone: true
+    imports: [MatToolbarModule, MatIconModule, MatButtonModule, MainTransportsComponent, MyTransportsComponent, RentedTransportsComponent],
+    standalone: true,
 })
-export class MainComponent implements OnInit{
+export class MainComponent implements OnInit {
     MainComponentState = MainComponentState;
-    user?:User;
+    user?: User;
     state: MainComponentState = MainComponentState.myTransports;
 
     private authService = inject(AuthService);
@@ -38,9 +37,7 @@ export class MainComponent implements OnInit{
     private router = inject(Router);
 
     ngOnInit(): void {
-        this.userService.getCurrentUser().subscribe(
-            (response) => response.success ? this.user = response.body : this.user = undefined
-        )
+        this.userService.getCurrentUser().subscribe((response) => (response.success ? (this.user = response.body) : (this.user = undefined)));
     }
 
     logInClick() {

@@ -15,25 +15,34 @@
         </mat-form-field>
         <mat-form-field>
             <mat-label>Password</mat-label>
-            <input 
-                matInput [type]="passwordVisibility ? 'text' : 'password'" [(ngModel)]="this.user.password"
+            <input
+                matInput
+                [type]="passwordVisibility ? 'text' : 'password'"
+                [(ngModel)]="this.user.password"
             />
-            <button 
-                mat-icon-button matSuffix (click)="hideClick($event)"
-            >
-                <mat-icon>{{this.passwordVisibility ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <button mat-icon-button matSuffix (click)="hideClick($event)">
+                <mat-icon>{{
+                    this.passwordVisibility ? "visibility_off" : "visibility"
+                }}</mat-icon>
             </button>
         </mat-form-field>
 
         <button
-            [disabled]="disableButton" class="button" mat-flat-button color="primary" (click)="registerClick()"
-        > 
+            [disabled]="disableButton"
+            class="button"
+            mat-flat-button
+            color="primary"
+            (click)="registerClick()"
+        >
             Register
         </button>
 
         <button
-            class="button" mat-flat-button color="primary" (click)="signInClick()"
-        > 
+            class="button"
+            mat-flat-button
+            color="primary"
+            (click)="signInClick()"
+        >
             Sign In
         </button>
     </div>

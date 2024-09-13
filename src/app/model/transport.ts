@@ -1,6 +1,6 @@
 export class Transport {
     owner: String = '';
-    renter: String = ''
+    renter: String = '';
     brand: String = '';
     model: String = '';
     year: String = '';
@@ -11,8 +11,8 @@ export class Transport {
 }
 
 export class TransportCreateRequest {
-    owner:String ='';
-    brand:String ='';
+    owner: String = '';
+    brand: String = '';
     model: String = '';
     year: String = '';
     location: String = '';
@@ -21,10 +21,10 @@ export class TransportCreateRequest {
 }
 
 export class TransportsResponse {
-    success:boolean = false;
-    body:Transport[] = []
+    success: boolean = false;
+    body: Transport[] = [];
 
-    constructor(success:boolean, body:Transport[]) {
+    constructor(success: boolean, body: Transport[]) {
         this.success = success;
         this.body = body;
     }

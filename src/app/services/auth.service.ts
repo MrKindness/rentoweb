@@ -1,39 +1,36 @@
-import { HttpClient } from "@angular/common/http";
-import { inject, Injectable } from "@angular/core";
-import { Constants } from "../utils/constants";
-import { SimpleResponse } from "../model/simple-response";
-import { catchError, map, Observable } from "rxjs";
-import { jwtDecode } from "jwt-decode";
-import { AuthRequest } from "../model/auth";
-import { UserCreateRequest } from "../model/user";
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { Constants } from '../utils/constants';
+import { SimpleResponse } from '../model/simple-response';
+import { catchError, map, Observable } from 'rxjs';
+import { jwtDecode } from 'jwt-decode';
+import { AuthRequest } from '../model/auth';
+import { UserCreateRequest } from '../model/user';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class AuthService {
-
     private http = inject(HttpClient);
 
-    public signIn(username: string, password: string):Observable<SimpleResponse> {
-        return this.http.post<SimpleResponse>(Constants.authRequest, new AuthRequest(username, password))
-        .pipe(
+    public signIn(username: string, password: string): Observable<SimpleResponse> {
+        return this.http.post<SimpleResponse>(Constants.authRequest, new AuthRequest(username, password)).pipe(
             map((response) => {
                 this.setSession(response.value);
-                return new SimpleResponse(true, response.value)
+                return new SimpleResponse(true, response.value);
             }),
             catchError(async (err) => {
-                return new SimpleResponse(false, err?.error?.value)
+                return new SimpleResponse(false, err?.error?.value);
             })
         );
     }
 
-    public register(user: UserCreateRequest):Observable<SimpleResponse> {
-        return this.http.post<SimpleResponse>(Constants.registerRequest, user)
-        .pipe(
+    public register(user: UserCreateRequest): Observable<SimpleResponse> {
+        return this.http.post<SimpleResponse>(Constants.registerRequest, user).pipe(
             map((response) => {
                 this.setSession(response.value);
-                return new SimpleResponse(true, response.value)
+                return new SimpleResponse(true, response.value);
             }),
             catchError(async (err) => {
-                return new SimpleResponse(false, err?.error?.value)
+                return new SimpleResponse(false, err?.error?.value);
             })
         );
     }
@@ -45,7 +42,7 @@ export class AuthService {
 
     public isTokenExpired() {
         const expiration = localStorage.getItem('expires_at');
-        if(expiration) {
+        if (expiration) {
             return Date.now() / 1000 > Number(expiration);
         }
         return false;

@@ -4,6 +4,6 @@ import { Component } from '@angular/core';
     selector: 'user-component',
     templateUrl: './user.component.html',
     styleUrls: ['./user.component.scss'],
-    standalone: true
+    standalone: true,
 })
 export class UserComponent {}

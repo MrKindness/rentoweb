@@ -7,8 +7,7 @@ import { RegisterComponent } from './components/register/register.component';
 
 export const routes: Routes = [
     { path: '', component: MainComponent },
-    { path: Constants.authPage, component: SignInComponent},
-    { path: Constants.registerPage, component: RegisterComponent},
-    { path: '**', component: NotFoundComponent}
+    { path: Constants.authPage, component: SignInComponent },
+    { path: Constants.registerPage, component: RegisterComponent },
+    { path: '**', component: NotFoundComponent },
 ];
- 
