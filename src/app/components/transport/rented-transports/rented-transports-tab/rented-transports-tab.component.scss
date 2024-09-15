@@ -1,0 +1,9 @@
+.container {
+    margin-top: 15px;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+}
+
+.transports-container {
+    grid-column: 2/3;
+}

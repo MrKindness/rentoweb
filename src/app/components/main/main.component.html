@@ -37,11 +37,15 @@
     </mat-toolbar>
     <div class="content-container">
         @switch(state) { @case(MainComponentState.mainTransports) {
-        <main-transports-component></main-transports-component>
+        <main-transports-tab-component
+            [user]="this.user"
+        ></main-transports-tab-component>
         } @case(MainComponentState.myTransports) {
-        <my-transports-component [user]="this.user"></my-transports-component>
+        <my-transports-tab-component
+            [user]="this.user"
+        ></my-transports-tab-component>
         } @case(MainComponentState.rentedTransports) {
-        <rented-transports-component></rented-transports-component>
+        <rented-transports-tab-component></rented-transports-tab-component>
         } }
     </div>
 </div>

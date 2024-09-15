@@ -1,0 +1,24 @@
+<div class="container">
+    <button
+        class="button"
+        mat-flat-button
+        color="primary"
+        (click)="this.showNewTransportForm = true"
+    >
+        Add new
+    </button>
+    <div class="transports-container">
+        @if(this.showNewTransportForm) {
+        <new-transport-component
+            [username]="this.user()?.username"
+            (cancelClickEvent)="hideNewTransport()"
+            (transportCreatedEvent)="updateTransportsList()"
+        ></new-transport-component>
+        } @for (transport of transports; track transport.uuid) {
+        <my-transport-component
+            [transport]="transport"
+            (transportDeletedEvent)="updateTransportsList()"
+        ></my-transport-component>
+        }
+    </div>
+</div>

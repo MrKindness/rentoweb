@@ -1,0 +1,11 @@
+<div class="container">
+    <div class="transports-container">
+        @for (transport of transports; track transport.uuid) {
+        <main-transport-component
+            [user]="this.user()"
+            [transport]="transport"
+            (transportWasRented)="updateTransportsList()"
+        ></main-transport-component>
+        }
+    </div>
+</div>

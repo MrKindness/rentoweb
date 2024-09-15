@@ -1,0 +1,9 @@
+<div class="container">
+    <div class="transports-container">
+        @for (transport of transports; track transport.uuid) {
+        <rented-transport-component
+            [transport]="transport"
+        ></rented-transport-component>
+        }
+    </div>
+</div>

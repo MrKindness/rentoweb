@@ -1,0 +1,131 @@
+<mat-card class="my-transport-card" appearance="outlined">
+    <mat-card-content class="card">
+        <mat-form-field class="input">
+            <mat-label>Brand</mat-label>
+            <input
+                matInput
+                [readonly]="!isEditting"
+                [(ngModel)]="this.transport().brand"
+            />
+        </mat-form-field>
+        <mat-form-field class="input">
+            <mat-label>Model</mat-label>
+            <input
+                matInput
+                [readonly]="!isEditting"
+                [(ngModel)]="this.transport().model"
+            />
+        </mat-form-field>
+        <mat-form-field class="input">
+            <mat-label>Year</mat-label>
+            <input
+                type="number"
+                matInput
+                [readonly]="!isEditting"
+                [(ngModel)]="this.transport().year"
+            />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Status</mat-label>
+            @if(isEditting) {
+            <mat-select
+                [disabled]="!isEditting"
+                [(value)]="this.transport().status"
+            >
+                <mat-option value="PENDING">PENDING</mat-option>
+                <mat-option value="SERVICE">SERVICE</mat-option>
+            </mat-select>
+            } @else {
+            <input
+                matInput
+                [readonly]="!isEditting"
+                [(ngModel)]="this.transport().status"
+            />
+            }
+        </mat-form-field>
+        <mat-form-field class="input">
+            <mat-label>Renter</mat-label>
+            <input
+                matInput
+                readonly
+                [value]="
+                    this.transport().renter
+                        ? this.transport().renter.username
+                        : ''
+                "
+            />
+            @if(this.transport().renter) {
+            <button mat-icon-button matSuffix (click)="renterInfoClick()">
+                <mat-icon>info</mat-icon>
+            </button>
+            }
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Location</mat-label>
+            <input
+                type="text"
+                aria-label="Number"
+                matInput
+                [readonly]="!isEditting"
+                [formControl]="locationControl"
+                [matAutocomplete]="auto"
+            />
+            <mat-autocomplete #auto="matAutocomplete">
+                @for (option of filteredOptions | async; track option) {
+                <mat-option [value]="option">{{ option }}</mat-option>
+                }
+            </mat-autocomplete>
+        </mat-form-field>
+        <mat-form-field class="input">
+            <mat-label>Address</mat-label>
+            <input
+                matInput
+                [readonly]="!isEditting"
+                [(ngModel)]="this.transport().address"
+            />
+        </mat-form-field>
+        <mat-form-field class="input">
+            <mat-label>Description</mat-label>
+            <textarea
+                matInput
+                maxlength="500"
+                [(ngModel)]="this.transport().description"
+                [readonly]="!isEditting"
+            ></textarea>
+            @if(this.isEditting) {
+            <mat-hint align="end"
+                >{{ this.transport().description.length }} / 500</mat-hint
+            >
+            }
+        </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+        @if(isEditting) {
+        <button mat-button [disabled]="disableSaveButton" (click)="saveClick()">
+            Save
+        </button>
+        <button
+            mat-button
+            [disabled]="disableCancelButton"
+            (click)="cancelClick()"
+        >
+            Cancel
+        </button>
+        } @else {
+        <button
+            mat-button
+            [disabled]="disableUpdateButton"
+            (click)="updateClick()"
+        >
+            Update
+        </button>
+        }
+        <button
+            mat-button
+            [disabled]="disableDeleteButton"
+            (click)="deleteClick()"
+        >
+            Delete
+        </button>
+    </mat-card-actions>
+</mat-card>

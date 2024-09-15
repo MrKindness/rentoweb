@@ -4,17 +4,6 @@
     grid-template-columns: 1fr 3fr 1fr;
 }
 
-.button {
-    grid-column: 1/2;
-    justify-self: end;
-    width: fit-content;
-    margin-right: 15px;
-}
-
 .transports-container {
     grid-column: 2/3;
-}
-
-.card {
-    display: grid;
 }

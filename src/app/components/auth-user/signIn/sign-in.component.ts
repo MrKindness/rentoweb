@@ -4,11 +4,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { AuthService } from '../../services/auth.service';
-import { SimpleResponse } from '../../model/simple-response';
+import { AuthService } from '../../../services/auth.service';
+import { SimpleResponse } from '../../../model/simple-response';
 import { Router } from '@angular/router';
-import { Constants } from '../../utils/constants';
-import { DialogService } from '../../services/dialog.service';
+import { Constants } from '../../../utils/constants';
+import { DialogService } from '../../../services/dialog.service';
 
 @Component({
     selector: 'sign-in-component',
@@ -35,7 +35,7 @@ export class SignInComponent {
     async signInClick() {
         this.disableButton = true;
         this.authService.signIn(this.username, this.password).subscribe((result: SimpleResponse) => {
-            result.success ? this.router.navigateByUrl('') : this.dialogService.openDialog('Error', result.value);
+            result.success ? this.router.navigateByUrl('') : this.dialogService.openSimpleDialog('Error', result.value);
             this.disableButton = false;
         });
     }

@@ -1,15 +1,14 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { Constants } from '../../utils/constants';
-import { MyTransportsComponent } from '../my-transports/my-transports.component';
-import { RentedTransportsComponent } from '../rented-transports/rented-transports.component';
-import { MainTransportsComponent } from '../main-transports/main-transports.component';
 import { User } from '../../model/user';
+import { RentedTransportsTabComponent } from '../transport/rented-transports/rented-transports-tab/rented-transports-tab.component';
+import { MainTransportsTabComponent } from '../transport/main-transports/main-transports-tab/main-transports-tab.component';
+import { MyTransportsTabComponent } from '../transport/my-transports/my-transports-tab/my-transports-tab.component';
 
 export enum MainComponentState {
     myTransports,
@@ -24,13 +23,13 @@ export enum MainComponentState {
     selector: 'main-component',
     templateUrl: './main.component.html',
     styleUrls: ['./main.component.scss'],
-    imports: [MatToolbarModule, MatIconModule, MatButtonModule, MainTransportsComponent, MyTransportsComponent, RentedTransportsComponent],
+    imports: [MatToolbarModule, MatButtonModule, MainTransportsTabComponent, MyTransportsTabComponent, RentedTransportsTabComponent],
     standalone: true,
 })
 export class MainComponent implements OnInit {
     MainComponentState = MainComponentState;
     user?: User;
-    state: MainComponentState = MainComponentState.myTransports;
+    state: MainComponentState = MainComponentState.mainTransports;
 
     private authService = inject(AuthService);
     private userService = inject(UserService);
@@ -47,5 +46,6 @@ export class MainComponent implements OnInit {
     logOutClick() {
         this.user = undefined;
         this.authService.logoutUser();
+        this.state = MainComponentState.mainTransports;
     }
 }

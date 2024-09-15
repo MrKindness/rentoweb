@@ -3,8 +3,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 
 @Component({
-    selector: 'dialog-component',
-    templateUrl: 'dialog.component.html',
+    selector: 'simple-dialog-component',
+    templateUrl: 'simple-dialog.component.html',
     standalone: true,
     imports: [MatDialogModule, MatButtonModule],
     changeDetection: ChangeDetectionStrategy.OnPush,
