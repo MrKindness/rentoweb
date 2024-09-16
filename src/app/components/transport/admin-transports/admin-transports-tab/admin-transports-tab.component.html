@@ -1,10 +1,11 @@
 <div class="container">
-    <h2 class="formSigninHeading">Rented Transports</h2>
+    <h2 class="formSigninHeading">Transports</h2>
     <div class="transports-container">
         @for (transport of transports; track transport.uuid) {
-        <rented-transport-component
+        <admin-transport-component
             [transport]="transport"
-        ></rented-transport-component>
+            (transportDeleted)="updateTransportsList()"
+        ></admin-transport-component>
         }
     </div>
 </div>

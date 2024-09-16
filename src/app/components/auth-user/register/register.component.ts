@@ -6,7 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { SimpleResponse } from '../../../model/simple-response';
-import { UserCreateRequest } from '../../../model/user';
+import { UserRequest } from '../../../model/user';
 import { AuthService } from '../../../services/auth.service';
 import { DialogService } from '../../../services/dialog.service';
 import { Constants } from '../../../utils/constants';
@@ -21,7 +21,7 @@ import { Constants } from '../../../utils/constants';
 export class RegisterComponent {
     passwordVisibility: boolean = false;
     disableButton: boolean = false;
-    user: UserCreateRequest = new UserCreateRequest();
+    user: UserRequest = new UserRequest();
 
     private authService = inject(AuthService);
     private router = inject(Router);

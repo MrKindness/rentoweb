@@ -11,8 +11,18 @@
                     Home
                 </button>
                 @if(this.user && this.user.role == 'admin') {
-                <button mat-flat-button>Users</button>
-                <button mat-flat-button>Transports</button>
+                <button
+                    mat-flat-button
+                    (click)="this.state = MainComponentState.users"
+                >
+                    Users
+                </button>
+                <button
+                    mat-flat-button
+                    (click)="this.state = MainComponentState.transports"
+                >
+                    Transports
+                </button>
                 } @else if (this.user && this.user.role == 'user') {
                 <button
                     mat-flat-button
@@ -27,7 +37,12 @@
                     Rented transports
                 </button>
                 } @if(this.user) {
-                <button mat-flat-button>Settings</button>
+                <button
+                    mat-flat-button
+                    (click)="this.state = MainComponentState.settings"
+                >
+                    Settings
+                </button>
                 <button mat-flat-button (click)="logOutClick()">Log out</button>
                 } @else {
                 <button mat-flat-button (click)="logInClick()">Log in</button>
@@ -46,6 +61,15 @@
         ></my-transports-tab-component>
         } @case(MainComponentState.rentedTransports) {
         <rented-transports-tab-component></rented-transports-tab-component>
+        } @case(MainComponentState.settings) {
+        <settings-component
+            [user]="this.user"
+            (editEndEvent)="editEndEvent()"
+        ></settings-component>
+        } @case(MainComponentState.transports) {
+        <admin-transports-tab-component></admin-transports-tab-component>
+        } @case(MainComponentState.users) {
+        <admin-users-tab-component></admin-users-tab-component>
         } }
     </div>
 </div>

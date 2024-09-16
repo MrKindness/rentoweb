@@ -9,6 +9,9 @@ import { User } from '../../model/user';
 import { RentedTransportsTabComponent } from '../transport/rented-transports/rented-transports-tab/rented-transports-tab.component';
 import { MainTransportsTabComponent } from '../transport/main-transports/main-transports-tab/main-transports-tab.component';
 import { MyTransportsTabComponent } from '../transport/my-transports/my-transports-tab/my-transports-tab.component';
+import { SettingsComponent } from '../auth-user/settings/settings.component';
+import { AdminTransportsTabComponent } from '../transport/admin-transports/admin-transports-tab/admin-transports-tab.component';
+import { AdminUsersTabComponent } from '../auth-user/admin-users/admin-users-tab/admin-users-tab.component';
 
 export enum MainComponentState {
     myTransports,
@@ -23,7 +26,16 @@ export enum MainComponentState {
     selector: 'main-component',
     templateUrl: './main.component.html',
     styleUrls: ['./main.component.scss'],
-    imports: [MatToolbarModule, MatButtonModule, MainTransportsTabComponent, MyTransportsTabComponent, RentedTransportsTabComponent],
+    imports: [
+        MatToolbarModule,
+        MatButtonModule,
+        MainTransportsTabComponent,
+        MyTransportsTabComponent,
+        RentedTransportsTabComponent,
+        SettingsComponent,
+        AdminTransportsTabComponent,
+        AdminUsersTabComponent,
+    ],
     standalone: true,
 })
 export class MainComponent implements OnInit {
@@ -36,6 +48,11 @@ export class MainComponent implements OnInit {
     private router = inject(Router);
 
     ngOnInit(): void {
+        this.userService.getCurrentUser().subscribe((response) => (response.success ? (this.user = response.body) : (this.user = undefined)));
+    }
+
+    editEndEvent() {
+        this.state = MainComponentState.mainTransports;
         this.userService.getCurrentUser().subscribe((response) => (response.success ? (this.user = response.body) : (this.user = undefined)));
     }
 

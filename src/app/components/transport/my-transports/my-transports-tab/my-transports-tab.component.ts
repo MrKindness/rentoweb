@@ -31,15 +31,11 @@ export class MyTransportsTabComponent implements OnInit {
         this.transportService.getTransportsByOwner().subscribe((response) => {
             if (response.success) {
                 this.transports = response.body;
-                this.hideNewTransport();
+                this.showNewTransportForm = false;
             } else {
                 this.transports = [];
                 this.dialogService.openSimpleDialog('Request error!', '');
             }
         });
-    }
-
-    hideNewTransport() {
-        this.showNewTransportForm = false;
     }
 }

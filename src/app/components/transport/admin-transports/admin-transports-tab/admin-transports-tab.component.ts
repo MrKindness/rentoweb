@@ -5,19 +5,19 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { Transport } from '../../../../model/transport';
 import { DialogService } from '../../../../services/dialog.service';
 import { TransportService } from '../../../../services/transport.service';
-import { MainTransportComponent } from '../main-transport/main-transport.component';
+import { AdminTransportComponent } from '../admin-transport/admin-transport.component';
 import { User } from '../../../../model/user';
 
 @Component({
-    selector: 'main-transports-tab-component',
-    templateUrl: './main-transports-tab.component.html',
-    styleUrls: ['./main-transports-tab.component.scss'],
-    imports: [MatToolbarModule, MatIconModule, MatButtonModule, MainTransportComponent],
+    selector: 'admin-transports-tab-component',
+    templateUrl: './admin-transports-tab.component.html',
+    styleUrls: ['./admin-transports-tab.component.scss'],
+    imports: [MatToolbarModule, MatIconModule, MatButtonModule, AdminTransportComponent],
     standalone: true,
 })
-export class MainTransportsTabComponent {
-    transports: Transport[] = [];
+export class AdminTransportsTabComponent {
     user = input<User>();
+    transports: Transport[] = [];
 
     transportService = inject(TransportService);
     dialogService = inject(DialogService);

@@ -26,6 +26,7 @@ export class TransportService {
                 return new TransportsResponse(true, body);
             }),
             catchError(async (err) => {
+                console.log(err);
                 return new TransportsResponse(false, []);
             })
         );

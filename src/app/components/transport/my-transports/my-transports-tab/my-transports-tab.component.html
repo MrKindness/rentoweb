@@ -1,4 +1,5 @@
 <div class="container">
+    <h2 class="formSigninHeading">My Transports</h2>
     <button
         class="button"
         mat-flat-button
@@ -11,7 +12,7 @@
         @if(this.showNewTransportForm) {
         <new-transport-component
             [username]="this.user()?.username"
-            (cancelClickEvent)="hideNewTransport()"
+            (cancelClickEvent)="this.showNewTransportForm = false"
             (transportCreatedEvent)="updateTransportsList()"
         ></new-transport-component>
         } @for (transport of transports; track transport.uuid) {

@@ -1,54 +1,54 @@
 <div class="formContainer">
     <div class="formSignin">
-        <h2 class="formSigninHeading">Register</h2>
+        <h2 class="formSigninHeading">Settings</h2>
         <mat-form-field>
             <mat-label>Username</mat-label>
-            <input matInput required [(ngModel)]="this.user.username" />
+            <input matInput readonly [(ngModel)]="this.userEdit.username" />
         </mat-form-field>
         <mat-form-field>
             <mat-label>Name</mat-label>
-            <input matInput required [(ngModel)]="this.user.name" />
+            <input matInput [(ngModel)]="this.userEdit.name" />
         </mat-form-field>
         <mat-form-field>
             <mat-label>E-mail</mat-label>
-            <input matInput required [(ngModel)]="this.user.email" />
+            <input matInput [(ngModel)]="this.userEdit.email" />
         </mat-form-field>
         <mat-form-field>
             <mat-label>Phone</mat-label>
-            <input matInput [(ngModel)]="this.user.phone" />
+            <input matInput [(ngModel)]="this.userEdit.phone" />
         </mat-form-field>
         <mat-form-field>
             <mat-label>Password</mat-label>
             <input
                 matInput
-                required
                 [type]="passwordVisibility ? 'text' : 'password'"
-                [(ngModel)]="this.user.password"
+                [(ngModel)]="this.userEdit.password"
             />
             <button mat-icon-button matSuffix (click)="hideClick($event)">
                 <mat-icon>{{
                     this.passwordVisibility ? "visibility_off" : "visibility"
                 }}</mat-icon>
             </button>
+            <mat-hint align="end">leave blank if there are no changes</mat-hint>
         </mat-form-field>
 
         <button
-            [disabled]="disableButton"
+            [disabled]="disableSaveButton"
             class="button"
             mat-flat-button
             color="primary"
-            (click)="registerClick()"
+            (click)="saveClick()"
         >
-            Register
+            Save
         </button>
 
         <button
             class="button"
             mat-flat-button
             color="primary"
-            (click)="signInClick()"
+            (click)="cancelClick()"
         >
-            Sign In
+            Cancel
         </button>
     </div>
 </div>

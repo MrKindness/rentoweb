@@ -5,8 +5,9 @@ export class Constants {
     static readonly authRequest = this.authRoot;
     static readonly registerRequest = this.authRoot + '/register';
 
-    private static readonly userRoot = this.apiPath + '/user';
-    static readonly currentUserRequest = this.userRoot;
+    static readonly userRoot = this.apiPath + '/user';
+    static readonly updateUserRequest = this.userRoot + '/update';
+    static readonly userAdminRequest = this.userRoot + '/admin';
 
     static readonly transportRequest = this.apiPath + '/transport';
     static readonly transportsByOwnerRequest = this.transportRequest + '/owner';

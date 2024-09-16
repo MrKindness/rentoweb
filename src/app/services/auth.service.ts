@@ -5,7 +5,7 @@ import { SimpleResponse } from '../model/simple-response';
 import { catchError, map, Observable } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
 import { AuthRequest } from '../model/auth';
-import { UserCreateRequest } from '../model/user';
+import { UserRequest } from '../model/user';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -23,7 +23,7 @@ export class AuthService {
         );
     }
 
-    public register(user: UserCreateRequest): Observable<SimpleResponse> {
+    public register(user: UserRequest): Observable<SimpleResponse> {
         return this.http.post<SimpleResponse>(Constants.registerRequest, user).pipe(
             map((response) => {
                 this.setSession(response.value);

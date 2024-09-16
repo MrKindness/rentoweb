@@ -1,0 +1,24 @@
+<div class="container">
+    <h2 class="formSigninHeading">Users</h2>
+    <button
+        class="button"
+        mat-flat-button
+        color="primary"
+        (click)="this.showNewUserForm = true"
+    >
+        Add new
+    </button>
+    <div class="users-container">
+        @if(this.showNewUserForm) {
+        <new-admin-user-component
+            (cancelClickEvent)="this.showNewUserForm = false"
+            (userCreatedEvent)="updateUsersList()"
+        ></new-admin-user-component>
+        } @for (user of users; track user.username) {
+        <admin-user-component
+            [user]="user"
+            (userDeletedEvent)="updateUsersList()"
+        ></admin-user-component>
+        }
+    </div>
+</div>
