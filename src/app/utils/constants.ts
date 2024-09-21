@@ -12,6 +12,7 @@ export class Constants {
     static readonly transportRequest = this.apiPath + '/transport';
     static readonly transportsByOwnerRequest = this.transportRequest + '/owner';
     static readonly availableTransportsRequest = this.transportRequest + '/available';
+    static readonly transportsAdminRequest = this.transportRequest + '/admin';
     static readonly rentedTransportsRequest = this.transportRequest + '/rented';
     static readonly rentTransportRequest = this.transportRequest + '/rent';
 

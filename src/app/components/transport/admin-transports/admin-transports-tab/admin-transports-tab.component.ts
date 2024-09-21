@@ -29,7 +29,7 @@ export class AdminTransportsTabComponent {
     }
 
     updateTransportsList() {
-        this.transportService.getAvailableTransports().subscribe((response) => {
+        this.transportService.getAllTransports().subscribe((response) => {
             if (response.success) {
                 this.transports = response.body;
             } else {

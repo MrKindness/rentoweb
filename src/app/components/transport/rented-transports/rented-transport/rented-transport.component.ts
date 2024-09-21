@@ -24,7 +24,7 @@ export class RentedTransportComponent {
     transportService = inject(TransportService);
     dialogService = inject(DialogService);
 
-    renterInfoClick() {
-        this.dialogService.openUserInfoDialog(this.transport().renter);
+    ownerInfoClick() {
+        this.dialogService.openUserInfoDialog(this.transport().owner);
     }
 }

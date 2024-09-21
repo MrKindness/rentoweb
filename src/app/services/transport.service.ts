@@ -20,6 +20,18 @@ export class TransportService {
         );
     }
 
+    public getAllTransports(): Observable<TransportsResponse> {
+        return this.http.get<Transport[]>(Constants.transportsAdminRequest).pipe(
+            map((body: Transport[]) => {
+                return new TransportsResponse(true, body);
+            }),
+            catchError(async (err) => {
+                console.log(err);
+                return new TransportsResponse(false, []);
+            })
+        );
+    }
+
     public getAvailableTransports(): Observable<TransportsResponse> {
         return this.http.get<Transport[]>(Constants.availableTransportsRequest).pipe(
             map((body: Transport[]) => {

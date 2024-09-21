@@ -18,21 +18,15 @@
             />
         </mat-form-field>
         <mat-form-field class="input">
-            <mat-label>Renter</mat-label>
+            <mat-label>Owner</mat-label>
             <input
                 matInput
                 readonly
-                [value]="
-                    this.transport().renter
-                        ? this.transport().renter.username
-                        : ''
-                "
+                [value]="this.transport().owner.username"
             />
-            @if(this.transport().renter) {
-            <button mat-icon-button matSuffix (click)="renterInfoClick()">
+            <button mat-icon-button matSuffix (click)="ownerInfoClick()">
                 <mat-icon>info</mat-icon>
             </button>
-            }
         </mat-form-field>
         <mat-form-field>
             <mat-label>Location</mat-label>
